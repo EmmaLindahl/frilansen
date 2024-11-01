@@ -9,8 +9,7 @@ function App() {
   //komponenter = Header, card, footer
   return (
     <Router>
-    {/* <>
-      <div style={{ backgroundColor: 'coral' }}>
+        <div style={{ backgroundColor: 'coral' }}>
         Header
       </div>
       <h1>Snickare Nära Dig</h1>
@@ -21,9 +20,8 @@ function App() {
       </div>
       <p className="read-the-docs">
         Lägg in ngt i botten
-      </p> */}
-
-      {/* <nav>
+      </p>
+    {/* <nav>
         <Link to="/">Home</Link> | <Link to="/settings">Settings</Link>
       </nav> */}
 
@@ -31,7 +29,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>
-    {/* </> */}
   </Router>
   )
 }
