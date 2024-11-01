@@ -12,15 +12,7 @@ function App() {
         <div style={{ backgroundColor: 'coral' }}>
         Header
       </div>
-      <h1>Snickare Nära Dig</h1>
-      <div className="card">
-        <p>
-          ....Lista över Snickare....
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Lägg in ngt i botten
-      </p>
+           
     {/* <nav>
         <Link to="/">Home</Link> | <Link to="/settings">Settings</Link>
       </nav> */}
@@ -29,6 +21,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>
+
+      <p className="read-the-docs">
+        Lägg in ngt i botten
+      </p>
   </Router>
   )
 }
