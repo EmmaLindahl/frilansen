@@ -1,8 +1,16 @@
 import React from 'react';
 
-const Home = () => <>
-<div className="card">
-  <h1>Logga in el. fortsätt</h1>
-</div></>
+const Home = () => {
+  return (
+    <div>
+      <h1>
+        Välkommen
+      </h1>
+      <h2>
+        Logga in eller fortsätt
+      </h2>
+    </div>
+  )
+}
 
 export default Home;
