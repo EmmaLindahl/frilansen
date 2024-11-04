@@ -1,10 +1,8 @@
 import React from 'react';
 
-const Home = () => <><h1>Snickare Nära Dig</h1>
+const Home = () => <>
 <div className="card">
-  <p>
-    ....Lista över Snickare....
-  </p>
+  <h1>Logga in el. fortsätt</h1>
 </div></>
 
 export default Home;

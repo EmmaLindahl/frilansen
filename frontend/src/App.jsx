@@ -1,30 +1,25 @@
 import {BrowserRouter as Router,Route, Routes, Link} from 'react-router-dom';
 import Home from './components/Home';
 import Settings from './components/Settings'
+import Search from './components/Search'
+import Header from './components/Header'
+import Footer from './components/Footer'
 import './App.css'
 
 function App() {
 
-  //Använd componenter, lägg INTE in allt direkt här!
-  //komponenter = Header, card, footer
+  //RÖR EJ APP UTAN ATT SÄGA TILL!
   return (
     <Router>
-        <div style={{ backgroundColor: 'coral' }}>
-        Header
-      </div>
-           
-    {/* <nav>
-        <Link to="/">Home</Link> | <Link to="/settings">Settings</Link>
-      </nav> */}
+      <Header />
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>
 
-      <p className="read-the-docs">
-        Lägg in ngt i botten
-      </p>
+      <Footer />
   </Router>
   )
 }
