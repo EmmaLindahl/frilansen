@@ -5,8 +5,16 @@ import Search from './components/Search'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import './App.css'
+import { useState, useEffect } from 'react';
 
 function App() {
+
+  useEffect(() => {
+    fetch('/api')
+      .then(response => response.json())
+      .then((data) =>
+        console.log(data))
+    }, []);
 
   //RÖR EJ APP UTAN ATT SÄGA TILL!
   return (
