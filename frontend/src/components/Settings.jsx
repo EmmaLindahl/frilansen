@@ -3,10 +3,23 @@ import { useForm } from 'react-hook-form';
 
 const Settings = () => {
     const {register, handleSubmit, formState: { errors },} = useForm()
-    const onSubmit = (input) => {
-        console.log("Form Data Submitted:", input);
-    }
+    const userId = 1
 
+    const onSubmit = async (input) => {
+        console.log("Form Data Submitted:", input);
+        try {
+            const response =await fetch(`/api/user/${userId}`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(input)
+            })
+            const data = await response.json()
+            console.log("User updated:", data)
+        }catch (error){
+            console.error("Failed to update user:", error)
+        }
+    }
+    
 
     return (
         <>
@@ -17,11 +30,11 @@ const Settings = () => {
                     <div style={{ display: 'flex', gap: '15px' }}>
                         <label className='labelStyle'>
                             <span style={{ minWidth: '100px', display: 'inline-block'}}>Förnamn:</span>
-                            <input {...register("firstName", { required: "firstname is required" })} placeholder={errors.firstName ? errors.firstName.message : ""}/>
+                            <input {...register("firstname", { required: "firstname is required" })} placeholder={errors.firstname ? errors.firstname.message : ""}/>
                         </label>
                         <label className='labelStyle'>
                             <span style={{ minWidth: '100px', display: 'inline-block' }}>Efternamn:</span>
-                            <input {...register("lastName", { required: "lastname is required" })} placeholder={errors.lastName ? errors.lastName.message : ""}/>
+                            <input {...register("lastname", { required: "lastname is required" })} placeholder={errors.lastname ? errors.lastname.message : ""}/>
                         </label>
                     </div>
                     
@@ -32,7 +45,7 @@ const Settings = () => {
                         </label>
                         <label className='labelStyle'>
                             <span style={{ minWidth: '100px', display: 'inline-block' }}>Roll:</span>
-                            <input {...register("role")} />
+                            <input {...register("professionalrole")} />
                         </label>
                     </div>
                     
@@ -43,17 +56,17 @@ const Settings = () => {
                     
                     <label className='labelStyle'>
                         <span style={{ minWidth: '100px', display: 'inline-block' }}>Hemsida:</span>
-                        <input {...register("website")} />
+                        <input {...register("webbaddress")} />
                     </label>
                     
                     <div style={{ display: 'flex', gap: '15px' }}>
                         <label className='labelStyle'>
                             <span style={{ minWidth: '100px', display: 'inline-block' }}>Telefon nummer:</span>
-                            <input {...register("phone")} />
+                            <input {...register("phonenumber")} />
                         </label>
                         <label className='labelStyle'>
                             <span style={{ minWidth: '100px', display: 'inline-block' }}>Mail Adress:</span>
-                            <input {...register("mail")} />
+                            <input {...register("email")} />
                         </label>
                     </div>
                     
