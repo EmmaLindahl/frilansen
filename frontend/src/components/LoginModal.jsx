@@ -4,6 +4,7 @@ import './LoginModal.css';
 import LoginForm from './LoginForm'
 
 const LoginModal = ({ isOpen, onRequestClose }) => {
+    return (
     <Modal
         isOpen={isOpen}
         onRequestClose={onRequestClose}
@@ -17,5 +18,6 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
         <h2>Logga in</h2>
         <LoginForm />
     </Modal>
+    )
 }
 export default LoginModal;

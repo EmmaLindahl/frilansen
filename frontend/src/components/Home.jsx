@@ -21,7 +21,7 @@ const Home = () => {
           Logga in
         </button>
       </div>
-
+    
       <LoginModal isOpen={isModalOpen} onRequestClose={closeModal} />
     </div>
   )

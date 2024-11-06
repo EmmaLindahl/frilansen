@@ -27,6 +27,8 @@ const LoginForm = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
+            <button className='login-button-btn'>Logga in</button>
+            <p>Har du inget konto? Registrera dig <a>här</a></p>
         </form>
     )
 }

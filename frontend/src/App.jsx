@@ -8,12 +8,15 @@ import './App.css'
 import { useState, useEffect } from 'react';
 
 function App() {
+  const [data, setData] =useState(null)
 
   useEffect(() => {
     fetch('/api')
       .then(response => response.json())
-      .then((data) =>
-        console.log(data))
+      .then((data) => {
+        setData(data),
+        console.log("Fetch from App:", data)}
+      )
     }, []);
 
   //RÖR EJ APP UTAN ATT SÄGA TILL!

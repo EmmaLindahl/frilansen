@@ -12,8 +12,47 @@ const client = new Client({
 client.connect()
 
 app.use(cors())
-port = process.eventNames.PORT || 3000
+app.use(express.json())
+port = process.env.PORT || 3000
 
+
+//GET SINGLE USER
+app.get('/api/user/:id', async (request, response) => {
+    const userId = request.params.id;
+    try {
+        const result = await client.query(
+            'SELECT * FROM userinformation WHERE id = $1;',
+            [userId]
+        )
+        if (result.rows.length > 0) {
+            response.send(result.rows[0]);
+        } else {
+            response.status(404).json({ error: 'User not found' });
+        }
+    }catch (error) {
+        console.error(error)
+        response.status(500).json({error: 'User not found'})
+    }
+})
+
+//UPDATE
+app.put ('/api/user/:id', async (request, response) => {
+    const userId = request.params.id;
+    const {firstname, lastname, company, professionalrole, area, webbaddress, phonenumber, email} = request.body
+try{
+    const result = await client.query(
+        'UPDATE userInformation SET firstname = $1, lastName = $2, company = $3, professionalrole = $4, area = $5, webbaddress = $6, phonenumber = $7, email = $8 WHERE id = $9 RETURNING *;',
+        [firstname, lastname, company, professionalrole, area, webbaddress, phonenumber, email, userId]
+    );
+    response.status(200).json(result.rows[0]);
+} catch (error) {
+    console.error(error);
+    response.status(500).json({error: 'Failed to update user'})
+}
+
+})
+
+//GET ALL USERS
 app.get('/api', async (_request, response) => {
     const {rows} = await client.query(
         'SELECT * FROM userInformation'

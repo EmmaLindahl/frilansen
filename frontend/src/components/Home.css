@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.modal-container {
+    margin: 0 auto;
+}
+
+.welcome-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.welcome-section h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.welcome-section h2 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.welcome-section p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 20px;
+}
+
+.login-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
