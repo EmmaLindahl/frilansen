@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => <>
 <div>
-  <p1>Header: Länkarna</p1>
+  <p>Header: Länkarna</p>
 </div></>
 
 export default Header;

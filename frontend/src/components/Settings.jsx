@@ -1,12 +1,50 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useState, useEffect } from 'react';
 
 const Settings = () => {
-    const {register, handleSubmit, formState: { errors },} = useForm()
-    const userId = 1
+const [data, setData] = useState(null)
+const userId = 1
+
+    useEffect(() => {
+        fetch(`/api/user/${userId}`)
+          .then(response => response.json())
+          .then((data) =>{
+            setData(data),
+            console.log("Fetch from Settings", data)})
+        }, [userId]);
+
+    const {register, handleSubmit, formState: { errors }, reset} = useForm({
+        defaultValues: {
+            firstname: data?.firstname || '',
+            lastname: data?.lastname || '',
+            company: data?.company || '',
+            professionalrole: data?.professionalrole || '',
+            area: data?.area || '',
+            webbadress: data?.webbaddress || '',
+            phonenumber: data?.phonenumber || '',
+            email: data?.email || ''
+
+        }
+    })
+
+    useEffect(() => {
+        if (data) {
+            reset({
+                firstname: data.firstname || '',
+                lastname: data.lastname || '',
+                company: data.company || '',
+                professionalrole: data.professionalrole || '',
+                area: data.area || '',
+                webbaddress: data.webbaddress || '',
+                phonenumber: data.phonenumber || '',
+                email: data.email || ''
+            });
+        }
+    }, [data, reset])
 
     const onSubmit = async (input) => {
-        console.log("Form Data Submitted:", input);
+        console.log(`Form data submitted: ${input}`);
         try {
             const response =await fetch(`/api/user/${userId}`, {
                 method: 'PUT',

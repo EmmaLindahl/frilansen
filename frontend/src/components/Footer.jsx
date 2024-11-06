@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => <>
 <div>
-  <p1>Footer: Nånting Fint att läsa här</p1>
+  <p>Footer: Nånting Fint att läsa här</p>
 </div></>
 
 export default Footer;

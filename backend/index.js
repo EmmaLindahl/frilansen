@@ -15,6 +15,27 @@ app.use(cors())
 app.use(express.json())
 port = process.env.PORT || 3000
 
+
+//GET SINGLE USER
+app.get('/api/user/:id', async (request, response) => {
+    const userId = request.params.id;
+    try {
+        const result = await client.query(
+            'SELECT * FROM userinformation WHERE id = $1;',
+            [userId]
+        )
+        if (result.rows.length > 0) {
+            response.send(result.rows[0]);
+        } else {
+            response.status(404).json({ error: 'User not found' });
+        }
+    }catch (error) {
+        console.error(error)
+        response.status(500).json({error: 'User not found'})
+    }
+})
+
+//UPDATE
 app.put ('/api/user/:id', async (request, response) => {
     const userId = request.params.id;
     const {firstname, lastname, company, professionalrole, area, webbaddress, phonenumber, email} = request.body
@@ -31,6 +52,7 @@ try{
 
 })
 
+//GET ALL USERS
 app.get('/api', async (_request, response) => {
     const {rows} = await client.query(
         'SELECT * FROM userInformation'
