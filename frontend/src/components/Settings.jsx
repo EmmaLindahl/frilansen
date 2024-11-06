@@ -44,7 +44,7 @@ const userId = 1
     }, [data, reset])
 
     const onSubmit = async (input) => {
-        console.log(`Form data submitted: ${input}`);
+        console.log(`Form data submitted: ${input}`);//why is it ${input} instead of just input? this dont write any log just [object Object]
         try {
             const response =await fetch(`/api/user/${userId}`, {
                 method: 'PUT',
@@ -52,17 +52,21 @@ const userId = 1
                 body: JSON.stringify(input)
             })
             const data = await response.json()
-            console.log("User updated:", data)
+            console.log("User updated:", data)//here you dont do the ${input} thing so why up there?
         }catch (error){
             console.error("Failed to update user:", error)
         }
     }
     
+    const onSubmit2 = async (input) => {
+        console.log("nothing got deleted but here is your input:", input);
+    }
+
 
     return (
         <>
             <h1>Inställningar</h1>
-            <div className="card">           
+            <div className="card">
                 <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                     
                     <div style={{ display: 'flex', gap: '15px' }}>
@@ -113,9 +117,20 @@ const userId = 1
                 </div>
                 </form> 
             </div>
+
+
+            
+            <form onSubmit={handleSubmit(onSubmit2)} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            <label className='labelStyle'>
+                            <span style={{ minWidth: '100px', display: 'inline-block' }}>password:</span>
+                            <input {...register("password")} />
+                        </label>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
+                    <input className='submit' type="submit" value="Submit" style={{ minWidth: '150px' }} />
+                </div>
+                </form> 
         </>
     );
-    
 }
 
 
