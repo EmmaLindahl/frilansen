@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import './Search.css'
 
 const Search = () => {
-  const zones = Array.from({ length: 5 }, (_, index) => (
-    <div key={index} className="zone">
-      {index + 1}
-    </div>
-  ));
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('/api')
+      .then(response => response.json())
+      .then((data) => {
+        setData(data);
+        console.log("Fetch from search:", data);
+      });
+  }, []);
 
   return (
     <>
@@ -17,7 +23,20 @@ const Search = () => {
           placeholder="Sök efter en snickare..."
           className="search-input"
         />
-        {zones}
+        {data && data.length > 0 ? (
+          data.map((item, index) => (
+            <div key={index} className="User">
+              <p>
+                username: { item.username }
+                phone number: { item.phonenumber }
+                work role: { item.professionalrole }
+                webbaddress: { item.webbaddress }
+              </p>
+            </div>
+          ))
+        ) : (
+          <p>Laddar data...</p>
+        )}
       </div>
     </>
   );

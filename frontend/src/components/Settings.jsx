@@ -126,7 +126,7 @@ const userId = 1
                             <input {...register("password")} />
                         </label>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
-                    <input className='submit' type="submit" value="Submit" style={{ minWidth: '150px' }} />
+                    <input className='submit' type="submit" value="Delete" style={{ minWidth: '150px' }} />
                 </div>
                 </form> 
         </>
