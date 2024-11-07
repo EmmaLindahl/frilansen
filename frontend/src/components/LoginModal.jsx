@@ -16,7 +16,7 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
             &times;
         </button>
         <h2>Logga in</h2>
-        <LoginForm />
+        <LoginForm onClose={onRequestClose} />
     </Modal>
     )
 }

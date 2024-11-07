@@ -15,6 +15,18 @@ app.use(cors())
 app.use(express.json())
 port = process.env.PORT || 3000
 
+//GET ALL USERS - FLYTTAD FRÅN RAD 55 TILL 19 /Jonathan
+app.get('/api', async (_request, response) => {
+    const {rows} = await client.query(
+        'SELECT * FROM userInformation'
+    )
+    response.send(rows)
+})
+
+app.use(express.static(path.join(path.resolve(), 'dist')))
+app.listen(port, () => {
+    console.log(`Redo på http://localhost:${port}/`)
+})
 
 //GET SINGLE USER
 app.get('/api/user/:id', async (request, response) => {
@@ -52,18 +64,22 @@ try{
 
 })
 
-//GET ALL USERS
-app.get('/api', async (_request, response) => {
-    const {rows} = await client.query(
-        'SELECT * FROM userInformation'
-    )
-    response.send(rows)
-})
+//CREATE A NEW USER
+app.post('/api/user', async (request, response) => {
+    const { username, firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email } = request.body;
 
-app.use(express.static(path.join(path.resolve(), 'dist')))
-app.listen(port, () => {
-    console.log(`Redo på http://localhost:${port}/`)
-})
+    try {
+        const result = await client.query(
+            'INSERT INTO userInformation (username, firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;',
+            [username, firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email]
+        );
+
+        response.status(201).json(result.rows[0]);
+    } catch (error) {
+        console.error(error);
+        response.status(500).json({ error: 'Failed to create user' });
+    }
+});
 
 
 //I backendmappen: 

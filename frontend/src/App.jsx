@@ -4,6 +4,7 @@ import Settings from './components/Settings'
 import Search from './components/Search'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import CreateUser from './components/CreateUser';
 import './App.css'
 import { useState, useEffect } from 'react';
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path='/create-user' element={<CreateUser />} />
       </Routes>
 
       <Footer />

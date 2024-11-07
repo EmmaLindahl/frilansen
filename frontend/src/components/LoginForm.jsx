@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './LoginForm.css'
 
-const LoginForm = () => {
+const LoginForm = ({ onClose }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -28,7 +29,7 @@ const LoginForm = () => {
                 required
             />
             <button className='login-button-btn'>Logga in</button>
-            <p>Har du inget konto? Registrera dig <a>här</a></p>
+            <p>Har du inget konto? Registrera dig <Link to='/create-user' onClick={onClose}>här</Link></p>
         </form>
     )
 }
