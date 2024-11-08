@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-path = require('path')
-const dotenv = require('dotenv'),
-{ Client } = require('pg')
+const path = require('path');
+const dotenv = require('dotenv');
+const { Client } = require('pg');
 
 dotenv.config()
 const client = new Client({
@@ -11,8 +11,13 @@ const client = new Client({
 })
 client.connect()
 
+const authRoutes = require('./auth')
+
 app.use(cors())
 app.use(express.json())
+app.use('/api/auth', authRoutes)
+
+
 port = process.env.PORT || 3000
 
 //GET ALL USERS - FLYTTAD FRÅN RAD 55 TILL 19 /Jonathan
