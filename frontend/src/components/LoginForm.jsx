@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './LoginForm.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginForm = ({ onClose }) => {
@@ -9,6 +10,7 @@ const LoginForm = ({ onClose }) => {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');  
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -19,7 +21,8 @@ const LoginForm = ({ onClose }) => {
               email,  
               password  
             });
-      
+            localStorage.setItem('token', response.data.token)
+            navigate('/search')
             setMessage(response.data.message);
             setLoading(false); 
           } catch (error) {

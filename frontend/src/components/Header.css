@@ -1,6 +1,14 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+}
+
 .login-btn {
-    position: absolute;
-    right: 0;
+    position: relative;
+    left: 35px;
     top: 0;
     margin-right: 17px;
     margin-top: 10px;
@@ -11,4 +19,57 @@
 
 .login-btn:hover {
     background-color: #0056b3;
+}
+
+.hamburger-button {
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    right: 45px;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.hamburger-button.rotate {
+    transform: rotate(90deg);
+}
+
+.hamburger-menu {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 5;
+}
+
+.hamburger-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hamburger-menu ul li {
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hamburger-menu ul li:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+}
+
+.hamburger-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.hamburger-menu ul li a:hover {
+    text-decoration: underline;
 }
