@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const dotenv = require('dotenv');
 const { Client } = require('pg');
+const jwt = require('jsonwebtoken')
 
 dotenv.config()
 const client = new Client({
@@ -20,6 +21,20 @@ app.use('/api/auth', authRoutes)
 
 port = process.env.PORT || 3000
 
+const authenticateToken = (req, res, next) => {
+    const token = req.header('Authorization')?.split(' ')[1];
+    if(!token){
+        return response.status(401).json({error: 'No token provided'})
+    }
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) =>{
+        if(err){
+            return response.status(403).json({error: 'Invalid token'})
+        }
+        req.user = decoded;
+        next()
+    })
+}
+
 //GET ALL USERS - FLYTTAD FRÅN RAD 55 TILL 19 /Jonathan
 app.get('/api', async (_request, response) => {
     const {rows} = await client.query(
@@ -34,21 +49,28 @@ app.listen(port, () => {
 })
 
 //GET SINGLE USER
-app.get('/api/user/:id', async (request, response) => {
-    const userId = request.params.id;
+app.get('/api/user/:id', authenticateToken, async (req, res) => {
+    const userId = req.params.id;
+    const authenticatedUserId = String(req.user.userId);
+    console.log("HÄR", userId, typeof(userId))
+    console.log("HÄR", authenticatedUserId, typeof(authenticatedUserId))
+
+    if(userId !== authenticatedUserId){
+        return res.status(403).json({error: 'Not correct user'})
+    }
     try {
         const result = await client.query(
             'SELECT * FROM userinformation WHERE id = $1;',
             [userId]
         )
         if (result.rows.length > 0) {
-            response.send(result.rows[0]);
+            res.send(result.rows[0]);
         } else {
-            response.status(404).json({ error: 'User not found' });
+            res.status(404).json({ error: 'User not found' });
         }
     }catch (error) {
         console.error(error)
-        response.status(500).json({error: 'User not found'})
+        res.status(500).json({error: 'User not found'})
     }
 })
 
