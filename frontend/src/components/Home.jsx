@@ -4,6 +4,7 @@ import './Home.css'
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const token = localStorage.getItem('token');;
   
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -13,13 +14,14 @@ const Home = () => {
         <h1>
           Välkommen till Frilansen!
         </h1>
-        <h2>
-          Logga in eller fortsätt
-        </h2>
+        {token? <h2>Kolla in våra frilansare!</h2> : 
+          <h2>Logga in eller fortsätt</h2>   
+        }
+        
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, excepturi modi ad autem voluptates ullam et non nihil saepe sint voluptatum consequuntur sunt tenetur magni. Modi nisi consectetur quod itaque?</p>
-        <button className='login-button' onClick={openModal}>
+        {!token && <button className='login-button' onClick={openModal}>
           Logga in
-        </button>
+        </button>}
       </div>
     
       <LoginModal isOpen={isModalOpen} onRequestClose={closeModal} />

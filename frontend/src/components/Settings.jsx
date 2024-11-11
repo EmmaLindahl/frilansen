@@ -15,7 +15,7 @@ const Settings = () => {
     if (token) {
         const decodedToken = jwtDecode(token); // HÄR!
          setUserId(decodedToken.userId);
-         console.log(decodedToken)
+        //  console.log(decodedToken)
     }
   }, []);
 
