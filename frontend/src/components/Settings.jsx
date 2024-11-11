@@ -5,10 +5,12 @@ import { useForm } from 'react-hook-form';
 // import {jwt_decode} from 'jwt-decode';
 // import jwt_decode from 'jwt-decode';
 import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 const Settings = () => {
   const [data, setData] = useState(null);
   const [userId, setUserId] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -82,9 +84,32 @@ const Settings = () => {
     }
   };
 
-  const onSubmit2 = async (input) => {
-    console.log("nothing got deleted but here is your input:", input);
-  };
+  const onDeleteUser = async () => {
+    // const token = localStorage.getItem('token');
+    // try {
+    //   const response = await fetch(`/api/user/${userId}`, {
+    //     method: 'DELETE',
+    //     headers: {
+    //       'Authorization': `Bearer ${token}`,
+    //       'Content-Type': 'application/json'
+    //     },
+    //   });
+  
+      if (1) { //response.ok
+        console.log("User deleted successfully");
+        localStorage.removeItem('token');
+        setData(null);
+        setUserId(null);
+        navigate('/');
+      } else {
+        const errorData = await response.json();
+        console.error("Failed to delete user:", errorData);
+      }
+    // }
+    //  catch (error) {
+    //   console.error("Error deleting user:", error);
+    // }
+  };  
 
   return (
     <>
@@ -140,15 +165,16 @@ const Settings = () => {
         </form>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit2)} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-        <label className='labelStyle'>
-          <span style={{ minWidth: '100px', display: 'inline-block' }}>Password:</span>
-          <input {...register("password")} />
-        </label>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
-          <input className='submit' type="submit" value="Delete" style={{ minWidth: '150px' }} />
-        </div>
-      </form>
+      <form onSubmit={handleSubmit(onDeleteUser)} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+  <label className='labelStyle'>
+    <span style={{ minWidth: '100px', display: 'inline-block' }}>Password:</span>
+    <input {...register("password")} />
+  </label>
+  <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
+    <input className='submit' type="submit" value="Delete" style={{ minWidth: '150px' }} />
+  </div>
+</form>
+
     </>
   );
 };
