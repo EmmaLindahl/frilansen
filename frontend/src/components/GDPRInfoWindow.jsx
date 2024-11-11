@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const GDPRInfoWindow = ({ onClose }) => {
+    const [isChecked, setIsChecked] = useState(false);
+
     useEffect(() => {
         const GDPRaccepted = localStorage.getItem('gdprAccepted');
         if (GDPRaccepted) {
@@ -13,6 +15,10 @@ const GDPRInfoWindow = ({ onClose }) => {
         onClose();
     };
 
+    const handleCheckboxCheck = (e) => {
+        setIsChecked(e.target.checked);
+    };
+ 
     return (
         <div className='gdpr-container-outer'>
             <div className='gdpr-container-inner'>
@@ -25,7 +31,7 @@ const GDPRInfoWindow = ({ onClose }) => {
                         type="checkbox"
                         id="gdprCheckbox"
                         checked={isChecked}
-                        onChange={handlaCheckboxChange}
+                        onChange={handleCheckboxCheck}
                     />
                     <label htmlFor="gdprCheckbox">Jag godkänner villkoren</label>
                 </div>
