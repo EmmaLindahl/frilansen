@@ -1,14 +1,19 @@
 import {BrowserRouter as Router,Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
-import Settings from './components/Settings'
-import Search from './components/Search'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import CreateUser from './components/CreateUser';
 import './App.css'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
+
+const Home = lazy(() => import('./components/Home'))
+const CreateUser = lazy(() => import('./components/CreateUser'))
+const Search = lazy(() => import('./components/Search'))
+const Settings = lazy(() => import('./components/Settings'))
+
+export const preloadSearch = () => import('./components/Search')
+export const preloadSettings = () => import('./components/Settings')
 
 function App() {
+  //Don't think we use this?
   const [data, setData] =useState(null)
 
   useEffect(() => {
@@ -20,17 +25,18 @@ function App() {
       )
     }, []);
 
-  //RÖR EJ APP UTAN ATT SÄGA TILL!
   return (
     <Router>
       <Header />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path='/create-user' element={<CreateUser />} />
-      </Routes>
+      <Suspense fallback={<>Loading...</>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path='/create-user' element={<CreateUser />} />
+        </Routes>
+      </Suspense>
 
       <Footer />
   </Router>

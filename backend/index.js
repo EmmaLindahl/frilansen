@@ -52,8 +52,8 @@ app.listen(port, () => {
 app.get('/api/user/:id', authenticateToken, async (req, res) => {
     const userId = req.params.id;
     const authenticatedUserId = String(req.user.userId);
-    console.log("HÄR", userId, typeof(userId))
-    console.log("HÄR", authenticatedUserId, typeof(authenticatedUserId))
+    // console.log("HÄR", userId, typeof(userId))
+    // console.log("HÄR", authenticatedUserId, typeof(authenticatedUserId))
 
     if(userId !== authenticatedUserId){
         return res.status(403).json({error: 'Not correct user'})

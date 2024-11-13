@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LoginModal from './LoginModal';
 import GDPRInfo from './GDPRInfoWindow';
 import './Home.css'
+import {preloadSearch} from '../App'
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +31,7 @@ const Home = () => {
         }
         
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, excepturi modi ad autem voluptates ullam et non nihil saepe sint voluptatum consequuntur sunt tenetur magni. Modi nisi consectetur quod itaque?</p>
-        {!token && <button className='login-button' onClick={openModal}>
+        {!token && <button onMouseEnter={preloadSearch}className='login-button' onClick={openModal}>
           Logga in
         </button>}
       </div>
