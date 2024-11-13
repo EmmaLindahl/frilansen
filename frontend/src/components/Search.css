@@ -9,22 +9,28 @@
     border: 1px solid #ccc;
   }
 
-  .User {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
+  .companyCard {
+    background-color:rgb(250, 244, 236);
+    /* border: 1px solid #ddd; */
     border-radius: 5px;
     padding: 15px;
     margin-bottom: 15px;
     transition: transform 0.2s ease;
   }
 
-  .User:hover {
+  .companyCard:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
   }
 
-  .User p {
+  .companyCard p {
     margin: 5px 0;
     font-size: 14px;
     color:black;
+  }
+
+  .searchBtn{
+    max-height: 50px;
+    padding: 0.6em 1.2em;
+    background-color: rgb(196, 226, 254);
   }

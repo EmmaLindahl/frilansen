@@ -18,9 +18,8 @@ const Header = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    // const token = localStorage.getItem('token');
     if (token) {
-        const decodedToken = jwtDecode(token); // HÄR!
+        const decodedToken = jwtDecode(token);
          setUserId(decodedToken.userId);
          console.log(decodedToken)
     }
@@ -28,7 +27,6 @@ const Header = () => {
 
   useEffect(() => {
     if (userId) {
-    // const token = localStorage.getItem('token');
     fetch(`/api/user/${userId}`, {headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
@@ -36,7 +34,6 @@ const Header = () => {
       .then(response => response.json())
       .then((data) => {
         setData(data);
-        console.log("Fetch from Settings", data);
       });
   }
 }, [userId]);
@@ -44,7 +41,7 @@ const Header = () => {
   return (
     <div className='container'>
       <button 
-        className={`hamburger-button ${isMenuOpen ? 'rotate' : ''}`} 
+        className={`hamburgerBtn ${isMenuOpen ? 'rotate' : ''}`} 
         onClick={toggleMenu}>
         ☰
       </button>
@@ -57,7 +54,7 @@ const Header = () => {
        <p>{data.firstname} {data.lastname}</p></>}
       </div>
       
-      {data? <LogOut /> : <button className='login-btn' onClick={openModal}>
+      {data? <LogOut /> : <button className='login-btn button' onClick={openModal}>
           Logga in
       </button>}
       

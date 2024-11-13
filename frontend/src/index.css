@@ -3,9 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* color-scheme: light dark; */
+  /* color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -35,7 +35,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+.button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -46,23 +46,58 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+.button:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
+.button:focus,
+.button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
+/* @media (prefers-color-scheme: light) { */
+  /* :root {
     color: #213547;
     background-color: #ffffff;
-  }
-  a:hover {
+  } */
+  /* a:hover {
     color: #747bff;
-  }
-  button {
+  } */
+  /* .button {
     background-color: #f9f9f9;
-  }
+  } */
+/* } */
+
+#root {
+  /* max-width: 1280px; */
+  margin: auto;
+  /* padding: 2rem; */
+  text-align: center;
+}
+
+
+/* FOR FORMS */
+.card {
+  padding: 2em;
+  background-color: rgb(166, 197, 221);
+  border-radius: 5px;
+  /* filter: blur(50%); */  
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.labelStyle {
+  display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.submit {
+  padding: 1em;
+  width: 50%;
+  border-radius: 3px;
+  border: none;
+  background-color: rgb(60, 77, 138);
+  color: white;
+  cursor: pointer;
+  pointer-events: auto;
 }

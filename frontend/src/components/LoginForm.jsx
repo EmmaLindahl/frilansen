@@ -49,7 +49,7 @@ const LoginForm = ({ onClose }) => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
-            <button className='login-button-btn'>Logga in</button>
+            <button className='login-button-btn button'>Logga in</button>
             {loading && <p>Loading...</p>}
             {message && <p>{message}</p>}  
             <p>Har du inget konto? Registrera dig <Link to='/create-user' onClick={onClose}>här</Link></p>
