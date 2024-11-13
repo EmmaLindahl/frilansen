@@ -93,12 +93,12 @@ try{
 
 //CREATE A NEW USER
 app.post('/api/user', async (request, response) => {
-    const { username, firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email } = request.body;
+    const { firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email } = request.body;
 
     try {
         const result = await client.query(
-            'INSERT INTO userInformation (username, firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;',
-            [username, firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email]
+            'INSERT INTO userInformation (firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;',
+            [firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email]
         );
 
         response.status(201).json(result.rows[0]);

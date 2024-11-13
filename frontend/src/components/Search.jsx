@@ -5,7 +5,6 @@ const Search = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchParams, setSearchParams] = useState({
-    username: '',
     firstname: '',
     lastname: '',
     professionalrole: '',
@@ -32,7 +31,6 @@ const Search = () => {
     e.preventDefault();
     
     const results = data.filter(item =>
-      (!searchParams.username || item.username.toLowerCase().includes(searchParams.username.toLowerCase())) &&
       (!searchParams.firstname || item.firstname.toLowerCase().includes(searchParams.firstname.toLowerCase())) &&
       (!searchParams.lastname || item.lastname.toLowerCase().includes(searchParams.lastname.toLowerCase())) &&
       (!searchParams.professionalrole || item.professionalrole.toLowerCase().includes(searchParams.professionalrole.toLowerCase())) &&
@@ -48,14 +46,6 @@ const Search = () => {
       <div className="card">
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
           <p>Lista över Snickare</p>
-          <input
-            type="text"
-            name="username"
-            placeholder="Sök efter username"
-            className="search-input"
-            value={searchParams.username}
-            onChange={handleInputChange}
-          />
           <input
             type="text"
             name="firstname"
@@ -103,7 +93,6 @@ const Search = () => {
           filteredData.map((item, index) => (
             <div key={index} className="User">
               <p>
-                användarnamn: { item.username }<br/>
                 namn: { item.firstname }<br/>
                 efternamn: { item.lastname }<br/>
                 professionalrole: { item.professionalrole }<br/>

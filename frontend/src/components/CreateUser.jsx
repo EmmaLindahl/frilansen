@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 const CreateUser = () => {
     const [formData, setFormData] = useState({
-        username: '',
         firstName: '',
         lastname: '',
         password: '',
@@ -39,7 +38,6 @@ const CreateUser = () => {
                 const data = await response.json();
                 setMessage('User created successfully!');
                 setFormData({
-                    username: '',
                     firstName: '',
                     lastname: '',
                     password: '',
@@ -63,16 +61,6 @@ const CreateUser = () => {
         <div>
             <h2>Skapa ny användare</h2>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Användarnamn:</label>
-                    <input 
-                        type='text' 
-                        name='username' 
-                        value={formData.username} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
                 <div>
                     <label>Förnamn:</label>
                     <input 
