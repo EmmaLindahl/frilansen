@@ -85,17 +85,17 @@ const Settings = () => {
   };
 
   const onDeleteUser = async () => {
-    // const token = localStorage.getItem('token');
-    // try {
-    //   const response = await fetch(`/api/user/${userId}`, {
-    //     method: 'DELETE',
-    //     headers: {
-    //       'Authorization': `Bearer ${token}`,
-    //       'Content-Type': 'application/json'
-    //     },
-    //   });
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`/api/user/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+      });
   
-      if (1) { //response.ok
+      if (response.ok) {
         console.log("User deleted successfully");
         localStorage.removeItem('token');
         setData(null);
@@ -105,10 +105,10 @@ const Settings = () => {
         const errorData = await response.json();
         console.error("Failed to delete user:", errorData);
       }
-    // }
-    //  catch (error) {
-    //   console.error("Error deleting user:", error);
-    // }
+    }
+     catch (error) {
+      console.error("Error deleting user:", error);
+    }
   };  
 
   return (
