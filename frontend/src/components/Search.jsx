@@ -41,15 +41,12 @@ const Search = () => {
   };
 
   return (
-    <>
-      <h1>Snickare Nära Dig</h1>
-      <div className="card">
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          <p>Lista över Snickare</p>
+    <> 
+        <form onSubmit={handleSubmit} style={{ display: 'flex',  gap: '10px', justifyContent: 'center' }}>  
           <input
             type="text"
             name="firstname"
-            placeholder="Sök efter firstname"
+            placeholder="Förnamn"
             className="search-input"
             value={searchParams.firstname}
             onChange={handleInputChange}
@@ -57,7 +54,7 @@ const Search = () => {
           <input
             type="text"
             name="lastname"
-            placeholder="Sök efter lastname"
+            placeholder="Efternamn"
             className="search-input"
             value={searchParams.lastname}
             onChange={handleInputChange}
@@ -65,7 +62,7 @@ const Search = () => {
           <input
             type="text"
             name="professionalrole"
-            placeholder="Sök efter professionalrole"
+            placeholder="Yrkesgrupp"
             className="search-input"
             value={searchParams.professionalrole}
             onChange={handleInputChange}
@@ -73,7 +70,7 @@ const Search = () => {
           <input
             type="text"
             name="area"
-            placeholder="Sök efter area"
+            placeholder="Område"
             className="search-input"
             value={searchParams.area}
             onChange={handleInputChange}
@@ -81,23 +78,23 @@ const Search = () => {
           <input
             type="text"
             name="company"
-            placeholder="Sök efter company"
+            placeholder="Företag"
             className="search-input"
             value={searchParams.company}
             onChange={handleInputChange}
           />
-          <button type="submit">Search</button>
+          <button type="submit" className='searchBtn button'>Sök</button>
         </form>
+        <div className="card">
         
         {filteredData && filteredData.length > 0 ? (
           filteredData.map((item, index) => (
-            <div key={index} className="User">
+            <div key={index} className="companyCard">
+                { item.firstname } { item.lastname } - { item.professionalrole }<br/>
               <p>
-                namn: { item.firstname }<br/>
-                efternamn: { item.lastname }<br/>
-                professionalrole: { item.professionalrole }<br/>
-                area: { item.area }<br/>
-                företag: { item.company }
+                
+                företag: { item.company }<br/>
+                Område: { item.area }
               </p>
             </div>
           ))

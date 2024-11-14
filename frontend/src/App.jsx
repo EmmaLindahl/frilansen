@@ -1,7 +1,7 @@
 import {BrowserRouter as Router,Route, Routes } from 'react-router-dom';
 import Header from './components/Header'
 import Footer from './components/Footer'
-import './App.css'
+// import './App.css'
 import { useState, useEffect, lazy, Suspense } from 'react';
 
 const Home = lazy(() => import('./components/Home'))
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <Router>
-      <Header />
+      <Header/>
 
       <Suspense fallback={<>Loading...</>}>
         <Routes>

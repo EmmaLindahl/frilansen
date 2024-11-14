@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CreateUser.css';
 
 const CreateUser = () => {
     const [formData, setFormData] = useState({
@@ -59,10 +60,10 @@ const CreateUser = () => {
     };
     
     return (
-        <div>
+        <div className='create-user-container'>
             <h2>Skapa ny användare</h2>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className='input-container'>
                     <label>Förnamn:</label>
                     <input 
                         type='text' 
@@ -72,7 +73,7 @@ const CreateUser = () => {
                         required 
                     />
                 </div>
-                <div>
+                <div className='input-container'>
                     <label>Efternamn:</label>
                     <input 
                         type='text' 
@@ -82,7 +83,7 @@ const CreateUser = () => {
                         required 
                     />
                 </div>
-                <div>
+                <div className='input-container'>
                     <label>Lösenord:</label>
                     <input 
                         type='text' 
@@ -92,7 +93,7 @@ const CreateUser = () => {
                         required 
                     />
                 </div>
-                <div>
+                <div className='input-container'>
                     <label>Företag:</label>
                     <input 
                         type='text' 
@@ -102,7 +103,7 @@ const CreateUser = () => {
                         required 
                     />
                 </div>
-                <div>
+                <div className='input-container'>
                     <label>Yrkestitel:</label>
                     <select type='select' 
                             name='professionalrole' 
@@ -116,7 +117,7 @@ const CreateUser = () => {
                     </select>
 
                 </div>
-                <div>
+                <div className='input-container'>
                     <label>Område:</label>
                     <input 
                         type='text' 
@@ -126,7 +127,7 @@ const CreateUser = () => {
                         required 
                     />
                 </div>
-                <div>
+                <div className='input-container'>
                     <label>Webbadress:</label>
                     <input 
                         type='text' 
@@ -136,7 +137,7 @@ const CreateUser = () => {
                         required 
                     />
                 </div>
-                <div>
+                <div className='input-container'>
                     <label>Telefonnummer:</label>
                     <input 
                         type='text' 
@@ -146,7 +147,7 @@ const CreateUser = () => {
                         required 
                     />
                 </div>
-                <div>
+                <div className='input-container'>
                     <label>Mailadress:</label>
                     <input 
                         type='text' 
@@ -156,7 +157,7 @@ const CreateUser = () => {
                         required 
                     />
                 </div>
-                <button type='submit'>Skapa Användare</button>
+                <button type='submit' className='create-user-button'>Skapa Användare</button>
             </form>
             {message && <p>{message}</p>}
         </div>
