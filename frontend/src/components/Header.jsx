@@ -4,7 +4,7 @@ import LoginModal from './LoginModal';
 import LogOut from './LogOut'
 import './Header.css';
 import { jwtDecode } from 'jwt-decode';
-import { preloadSettings } from '../App';
+import { preloadCreateUser, preloadSearch, preloadSettings } from '../App';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,8 +67,8 @@ const Header = () => {
         <div className='hamburger-menu'>
           <ul>
             <li><a href='/'>Hem</a></li>
-            <li><a href='/search'>Sök Hantverkare</a></li>
-            <li><a href='/create-user'>Skapa Användare</a></li>
+            <li><a onMouseEnter={preloadSearch} href='/search'>Sök Hantverkare</a></li>
+            <li><a onMouseEnter={preloadCreateUser} href='/create-user'>Skapa Användare</a></li>
             <li><a onMouseEnter={preloadSettings} href='/settings'>Inställningar</a></li>
           </ul>
         </div>

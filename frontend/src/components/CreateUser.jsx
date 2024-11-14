@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 const CreateUser = () => {
     const [formData, setFormData] = useState({
-        firstName: '',
+        firstname: '',
         lastname: '',
         password: '',
         company: '',
-        professionalrole: '',
+        professionalrole: 'snickare',
         area: '',
         webbaddress: '',
         phonenumber: '',
@@ -33,16 +33,17 @@ const CreateUser = () => {
                 },
                 body: JSON.stringify(formData),
             });
+            console.log(formData)
 
             if (response.ok) {
                 const data = await response.json();
                 setMessage('User created successfully!');
                 setFormData({
-                    firstName: '',
+                    firstname: '',
                     lastname: '',
                     password: '',
                     company: '',
-                    professionalrole: '',
+                    professionalrole: 'snickare',
                     area: '',
                     webbaddress: '',
                     phonenumber: '',
@@ -103,13 +104,17 @@ const CreateUser = () => {
                 </div>
                 <div>
                     <label>Yrkestitel:</label>
-                    <input 
-                        type='text' 
-                        name='professionalrole' 
-                        value={formData.professionalrole} 
-                        onChange={handleChange} 
-                        required 
-                    />
+                    <select type='select' 
+                            name='professionalrole' 
+                            value={formData.professionalrole} 
+                            onChange={handleChange} 
+                            required>
+                        <option value="snickare">snickare</option>
+                        <option value="målare">målare</option>
+                        <option value="takläggare">takläggare</option>
+                        <option value="elektriker">elektriker</option>
+                    </select>
+
                 </div>
                 <div>
                     <label>Område:</label>

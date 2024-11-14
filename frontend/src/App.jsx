@@ -11,6 +11,7 @@ const Settings = lazy(() => import('./components/Settings'))
 
 export const preloadSearch = () => import('./components/Search')
 export const preloadSettings = () => import('./components/Settings')
+export const preloadCreateUser = () => import('./components/CreateUser')
 
 function App() {
   //Don't think we use this?
