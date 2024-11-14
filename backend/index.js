@@ -97,7 +97,7 @@ app.post('/api/user', async (request, response) => {
 
     try {
         const result = await client.query(
-            'INSERT INTO userInformation (firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;',
+            'INSERT INTO userInformation (firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;',
             [firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email]
         );
 

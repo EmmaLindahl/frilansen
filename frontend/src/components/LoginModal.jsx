@@ -15,7 +15,6 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
         <button className='close-button' onClick={onRequestClose}>
             &times;
         </button>
-        <h2>Logga in</h2>
         <LoginForm onClose={onRequestClose} />
     </Modal>
     )

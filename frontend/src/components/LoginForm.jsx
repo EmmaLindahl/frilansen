@@ -34,6 +34,7 @@ const LoginForm = ({ onClose }) => {
     return (
         <>
         <form onSubmit={handleLogin} className='login-form'>
+        <h2>Logga in</h2>
             <label>Mailadress:</label>
             <input
                 type='email'
