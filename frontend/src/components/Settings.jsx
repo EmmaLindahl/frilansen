@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-// import * as jwt_decode from 'jwt-decode';
-// import jwt_decode from 'jwt-decode';
-// import {jwt_decode} from 'jwt-decode';
-// import jwt_decode from 'jwt-decode';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,9 +11,8 @@ const Settings = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-        const decodedToken = jwtDecode(token); // HÄR!
+        const decodedToken = jwtDecode(token);
          setUserId(decodedToken.userId);
-        //  console.log(decodedToken)
     }
   }, []);
 
@@ -36,6 +31,12 @@ const Settings = () => {
     }
   }, [userId]);
 
+  const [deleteFormVisible, setDeleteFormVisible] = useState(false);
+
+  const toggleDeleteForm = () => {
+    setDeleteFormVisible(!deleteFormVisible);
+  };
+
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: {
       firstname: data?.firstname || '',
@@ -43,7 +44,7 @@ const Settings = () => {
       company: data?.company || '',
       professionalrole: data?.professionalrole || '',
       area: data?.area || '',
-      webbadress: data?.webbadress || '',
+      webbaddress: data?.webbaddress || '',
       phonenumber: data?.phonenumber || '',
       email: data?.email || ''
     }
@@ -57,7 +58,7 @@ const Settings = () => {
         company: data.company || '',
         professionalrole: data.professionalrole || '',
         area: data.area || '',
-        webbaddress: data.webbadress || '',
+        webbaddress: data.webbaddress || '',
         phonenumber: data.phonenumber || '',
         email: data.email || ''
       });
@@ -84,7 +85,7 @@ const Settings = () => {
     }
   };
 
-  const onDeleteUser = async () => {
+  const onDeleteUser = async (input) => {
     const token = localStorage.getItem('token');
     try {
       const response = await fetch(`/api/user/${userId}`, {
@@ -93,6 +94,7 @@ const Settings = () => {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
+        body: JSON.stringify(input)
       });
   
       if (response.ok) {
@@ -133,9 +135,15 @@ const Settings = () => {
               <input {...register("company")} />
             </label>
             <label className='labelStyle'>
-              <span style={{ minWidth: '100px', display: 'inline-block' }}>Roll:</span>
-              <input {...register("professionalrole")} />
-            </label>
+        <span style={{ minWidth: '100px', display: 'inline-block' }}>Roll:</span>
+        <select {...register("professionalrole")}>
+          <option value="">Select Yrkesgrupp</option>
+          <option value="snickare">snickare</option>
+          <option value="målare">målare</option>
+          <option value="takläggare">takläggare</option>
+          <option value="elektriker">elektriker</option>
+        </select>
+      </label>  
           </div>
 
           <label className='labelStyle'>
@@ -165,15 +173,54 @@ const Settings = () => {
         </form>
       </div>
 
-      <form onSubmit={handleSubmit(onDeleteUser)} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-  <label className='labelStyle'>
-    <span style={{ minWidth: '100px', display: 'inline-block' }}>Password:</span>
-    <input {...register("password")} />
-  </label>
-  <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
-    <input className='submit' type="submit" value="Delete" style={{ minWidth: '150px' }} />
-  </div>
-</form>
+
+      <div style={{ marginTop: '20px' }}>
+        <div 
+          onClick={toggleDeleteForm} 
+          style={{
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            fontWeight: 'bold',
+            color: '#333',
+            backgroundColor: 'white',
+            zIndex: '10',
+          }}
+        >
+          <span>Delete User</span>
+          <span 
+            style={{
+              transform: deleteFormVisible ? 'rotate(90deg)' : 'rotate(0deg)',
+              transition: 'transform 0.3s ease'
+            }}
+          >
+            {'>'}
+          </span>
+        </div>
+
+        <div
+          style={{
+            transform: deleteFormVisible ? 'translateY(0)' : 'translateY(-50px)',
+            opacity: deleteFormVisible ? 1 : 0,
+            transition: 'transform 0.5s ease, opacity 0.3s ease',
+            overflow: 'hidden',
+            marginTop: '15px',
+          }}
+        >
+          {deleteFormVisible && (
+            <form onSubmit={handleSubmit(onDeleteUser)} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+              <label className='labelStyle'>
+                <span style={{ minWidth: '100px', display: 'inline-block' }}>Password:</span>
+                <input {...register("password")} required />
+              </label>
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
+                <input className='submit' type="submit" value="Delete" style={{ minWidth: '150px' }} />
+              </div>
+            </form>
+          )}
+        </div>
+      </div>
 
     </>
   );

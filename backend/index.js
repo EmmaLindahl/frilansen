@@ -52,7 +52,7 @@ app.listen(port, () => {
 app.get('/api/user/:id', authenticateToken, async (req, res) => {
     const userId = req.params.id;
     const authenticatedUserId = String(req.user.userId);
-    // console.log("HÄR", userId, typeof(userId))
+    // console.log("HÄR", token)
     // console.log("HÄR", authenticatedUserId, typeof(authenticatedUserId))
 
     if(userId !== authenticatedUserId){
@@ -112,6 +112,7 @@ app.post('/api/user', async (request, response) => {
 app.delete('/api/user/:id', authenticateToken, async (req, res) => {
     const userId = req.params.id;
     const authenticatedUserId = String(req.user.userId);
+    const { password } = req.body;
 
     if (userId !== authenticatedUserId) {
         return res.status(403).json({ error: 'Not authorized to delete this user' });
@@ -119,12 +120,29 @@ app.delete('/api/user/:id', authenticateToken, async (req, res) => {
 
     try {
         const result = await client.query(
+            'SELECT * FROM userInformation WHERE id = $1;',
+            [userId]
+        );
+
+        const user = result.rows[0];
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        if (password !== user.password) {
+            return res.status(400).json({ error: 'Invalid password' });
+        }
+
+        console.log('SÅJA!');
+
+        const deleteResult = await client.query(
             'DELETE FROM userInformation WHERE id = $1 RETURNING *;',
             [userId]
         );
 
-        if (result.rows.length > 0) {
-            res.status(200).json({ message: 'User deleted successfully', user: result.rows[0] });
+        if (deleteResult.rows.length > 0) {
+            res.status(200).json({ message: 'User deleted successfully', user: deleteResult.rows[0] });
         } else {
             res.status(404).json({ error: 'User not found' });
         }
@@ -133,6 +151,7 @@ app.delete('/api/user/:id', authenticateToken, async (req, res) => {
         res.status(500).json({ error: 'Failed to delete user' });
     }
 });
+
 
 
 //I backendmappen: 

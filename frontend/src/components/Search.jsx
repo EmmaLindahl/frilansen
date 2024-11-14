@@ -62,14 +62,22 @@ const Search = () => {
             value={searchParams.lastname}
             onChange={handleInputChange}
           />
-          <input
-            type="text"
-            name="professionalrole"
-            placeholder="Yrkesgrupp"
-            className="search-input"
-            value={searchParams.professionalrole}
-            onChange={handleInputChange}
-          />
+         <select
+    name="professionalrole"
+    placeholder="Yrkesgrupp"
+    className="search-input"
+    value={searchParams.professionalrole}
+    onChange={handleInputChange}
+    style={{
+      color: searchParams.professionalrole === "" ? "grey" : "black" 
+  }}
+>
+    <option style={{color: 'grey'}}value="">Select Yrkesgrupp</option>
+    <option style={{color: 'black'}} value="snickare">snickare</option>
+    <option style={{color: 'black'}}value="målare">målare</option>
+    <option style={{color: 'black'}}value="takläggare">takläggare</option>
+    <option style={{color: 'black'}}value="elektriker">elektriker</option>
+</select>
           <input
             type="text"
             name="area"
