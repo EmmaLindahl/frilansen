@@ -60,105 +60,132 @@ const CreateUser = () => {
     };
     
     return (
-        <div className='create-user-container'>
+        <div>
             <h2>Skapa ny användare</h2>
-            <form onSubmit={handleSubmit}>
-                <div className='input-container'>
-                    <label>Förnamn:</label>
-                    <input 
-                        type='text' 
-                        name='firstname' 
-                        value={formData.firstname} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className='input-container'>
-                    <label>Efternamn:</label>
-                    <input 
-                        type='text' 
-                        name='lastname' 
-                        value={formData.lastname} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className='input-container'>
-                    <label>Lösenord:</label>
-                    <input 
-                        type='text' 
-                        name='password' 
-                        value={formData.password} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className='input-container'>
-                    <label>Företag:</label>
-                    <input 
-                        type='text' 
-                        name='company' 
-                        value={formData.company} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className='input-container'>
-                    <label>Yrkestitel:</label>
-                    <select type='select' 
-                            name='professionalrole' 
-                            value={formData.professionalrole} 
-                            onChange={handleChange} 
-                            required>
-                        <option value="snickare">snickare</option>
-                        <option value="målare">målare</option>
-                        <option value="takläggare">takläggare</option>
-                        <option value="elektriker">elektriker</option>
-                    </select>
+            <div className='card'>
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+             {/* Mail & Lösenord */}
+                    <div style={{ display: 'flex', gap: '15px' }}>
+                        <label className='labelStyle'>
+                            <span style={{ minWidth: '100px', display: 'inline-block' }}>Mail:</span>
+                            <input 
+                                type='text' 
+                                name='email' 
+                                value={formData.email} 
+                                onChange={handleChange} 
+                                required 
+                            />
+                        </label>
 
-                </div>
-                <div className='input-container'>
-                    <label>Område:</label>
-                    <input 
-                        type='text' 
-                        name='area' 
-                        value={formData.area} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className='input-container'>
-                    <label>Webbadress:</label>
-                    <input 
-                        type='text' 
-                        name='webbaddress' 
-                        value={formData.webbaddress} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className='input-container'>
-                    <label>Telefonnummer:</label>
-                    <input 
-                        type='text' 
-                        name='phonenumber' 
-                        value={formData.phonenumber} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className='input-container'>
-                    <label>Mailadress:</label>
-                    <input 
-                        type='text' 
-                        name='email' 
-                        value={formData.email} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <button type='submit' className='create-user-button'>Skapa Användare</button>
-            </form>
+                        <label className='labelStyle'>
+                            <span style={{ minWidth: '100px', display: 'inline-block' }}>Lösenord:</span>
+                            <input 
+                                type='text' 
+                                name='password' 
+                                value={formData.password} 
+                                onChange={handleChange} 
+                                required 
+                            />
+                        </label>
+                    </div>
+
+                    {/* För & Efternamn */}
+                    <div style={{ display: 'flex', gap: '15px' }}>
+                        <label className='labelStyle'>
+                            <span style={{ minWidth: '100px', display: 'inline-block' }}>Förnamn:</span>
+                            <input 
+                                type='text' 
+                                name='firstname' 
+                                value={formData.firstname} 
+                                onChange={handleChange} 
+                                required 
+                            />
+                        </label>
+
+                        <label className='labelStyle'>
+                            <span style={{ minWidth: '100px', display: 'inline-block' }}>Efternamn:</span>
+                            <input 
+                                type='text' 
+                                name='lastname' 
+                                value={formData.lastname} 
+                                onChange={handleChange} 
+                                required 
+                            />
+                        </label>
+                    </div>
+
+                    {/* Bolag & Roll */}
+                    <div style={{ display: 'flex', gap: '15px' }}>
+                        <label className='labelStyle'>
+                            <span style={{ minWidth: '100px', display: 'inline-block' }}>Företag:</span>
+                            <input 
+                                type='text' 
+                                name='company' 
+                                value={formData.company} 
+                                onChange={handleChange} 
+                                required 
+                            />
+                        </label>
+
+                        <label className='labelStyle'>
+                            <span style={{ minWidth: '100px', display: 'inline-block' }}>Roll:</span>
+                            <select 
+                                name='professionalrole' 
+                                value={formData.professionalrole} 
+                                onChange={handleChange} 
+                                required
+                            >
+                                <option value="snickare">snickare</option>
+                                <option value="målare">målare</option>
+                                <option value="takläggare">takläggare</option>
+                                <option value="elektriker">elektriker</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    {/* Område */}
+                    <div style={{ display: 'flex', gap: '15px' }}>
+                        <label className='labelStyle'>
+                            <span style={{ minWidth: '100px', display: 'inline-block' }}>Verksam inom:</span>
+                            <input 
+                                type='text' 
+                                name='area' 
+                                value={formData.area} 
+                                onChange={handleChange} 
+                                required 
+                            />
+                        </label>
+                    </div>
+
+                    {/* Webbadress & Telefon */}
+                    <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', marginTop: 'auto' }}>
+                        <label className='labelStyle'>
+                            <span style={{ minWidth: '100px', display: 'inline-block' }}>Webbadress:</span>
+                            <input 
+                                type='text' 
+                                name='webbaddress' 
+                                value={formData.webbaddress} 
+                                onChange={handleChange} 
+                                required 
+                            />
+                        </label>
+
+                        <label className='labelStyle'>
+                            <span style={{ minWidth: '100px', display: 'inline-block' }}>Telefon:</span>
+                            <input 
+                                type='text' 
+                                name='phonenumber' 
+                                value={formData.phonenumber} 
+                                onChange={handleChange} 
+                                required 
+                            />
+                        </label>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
+                        <button type='submit' className='submit'>Skapa Användare</button>
+                    </div>
+                </form>
+            </div>
             {message && <p>{message}</p>}
         </div>
     )

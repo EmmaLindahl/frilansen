@@ -29,16 +29,16 @@ function App() {
   return (
     <Router>
       <Header/>
-
-      <Suspense fallback={<>Loading...</>}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path='/create-user' element={<CreateUser />} />
-        </Routes>
-      </Suspense>
-
+      <div className='routeContainer'>
+        <Suspense fallback={<>Loading...</>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path='/create-user' element={<CreateUser />} />
+          </Routes>
+        </Suspense>
+      </div>
       <Footer />
   </Router>
   )

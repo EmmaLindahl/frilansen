@@ -85,14 +85,13 @@ const Search = () => {
           />
           <button type="submit" className='searchBtn button'>Sök</button>
         </form>
-        <div className="card">
+        <div className='companyCardsWrapper'>
         
         {filteredData && filteredData.length > 0 ? (
           filteredData.map((item, index) => (
             <div key={index} className="companyCard">
-                { item.firstname } { item.lastname } - { item.professionalrole }<br/>
-              <p>
-                
+               <p>{ item.firstname } { item.lastname } - { item.professionalrole }<br/></p> 
+              <p>                
                 företag: { item.company }<br/>
                 Område: { item.area }
               </p>

@@ -13,21 +13,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+/* a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
 a:hover {
   color: #535bf2;
-}
+} */
 
 body {
   margin: 0;
-  display: flex;
+  /* display: flex; */
   /* place-items: center; */
+  /* min-width: 320px;
+  min-height: 100vh; */
+}
+
+.routeContainer{
+  display: flex;
+  flex-direction: column;
+  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  margin-top: 20px;
 }
 
 h1 {
@@ -42,7 +51,8 @@ h1 {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #007bff;
+    color: white;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -78,11 +88,12 @@ h1 {
 /* FOR FORMS */
 .card {
   padding: 2em;
-  background-color: rgb(166, 197, 221);
+  background-color: rgb(250, 244, 236);
   border-radius: 5px;
   /* filter: blur(50%); */  
   cursor: pointer;
   pointer-events: auto;
+  min-width: 425px;
 }
 
 .labelStyle {

@@ -66,7 +66,8 @@ const Header = () => {
             <li><a href='/'>Hem</a></li>
             <li><a onMouseEnter={preloadSearch} href='/search'>Sök Hantverkare</a></li>
             <li><a onMouseEnter={preloadCreateUser} href='/create-user'>Skapa Användare</a></li>
-            <li><a onMouseEnter={preloadSettings} href='/settings'>Inställningar</a></li>
+            <li><a  onMouseEnter={preloadSettings} href='/settings' style={{
+              color: token ? 'gray' : 'inherit',cursor: token ? 'not-allowed' : 'pointer'}}>Inställningar</a></li>
           </ul>
         </div>
       )}

@@ -22,15 +22,31 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
   }
-
+.companyCardsWrapper{
+  /* min-width: 425px; */
+  width: 75%;
+  background-color: #f8f9fa;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 30px;
+}
   .companyCard p {
     margin: 5px 0;
     font-size: 14px;
     color:black;
+    cursor: pointer;
+    pointer-events: auto;
   }
 
-  .searchBtn{
-    max-height: 50px;
-    padding: 0.6em 1.2em;
-    background-color: rgb(196, 226, 254);
-  }
+  .searchBtn {
+    position: relative;
+    top: 0;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+    height: 40px;
+}
+.searchBtn:hover {
+  background-color: #0056b3;
+}

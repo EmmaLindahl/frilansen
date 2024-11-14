@@ -2,17 +2,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 30px;
+    padding: 8px 30px;
     position: relative;
-    /* width: 100%; */
+    background-color: orange;
    
 }
 
 .login-btn {
     position: relative;
-    left: 35px;
     top: 0;
-    margin-right: 17px;
     margin-top: 10px;
     background-color: #007bff;
     color: white;
@@ -29,7 +27,7 @@
     border: none;
     cursor: pointer;
     position: relative;
-    right: 45px;
+
     z-index: 10;
     transition: transform 0.3s ease;
 
@@ -76,3 +74,9 @@
 .hamburger-menu ul li a:hover {
     text-decoration: underline;
 }
+
+/* li a.disabled-link {
+    pointer-events: none;
+    color: gray;
+    cursor: not-allowed;
+  } */

@@ -113,7 +113,7 @@ const Settings = () => {
 
   return (
     <>
-      <h1>Inställningar</h1>
+      <h2>Inställningar</h2>
       <div className="card">
         <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
           <div style={{ display: 'flex', gap: '15px' }}>
@@ -144,13 +144,13 @@ const Settings = () => {
           </label>
 
           <label className='labelStyle'>
-            <span style={{ minWidth: '100px', display: 'inline-block' }}>Hemsida:</span>
+            <span style={{ minWidth: '100px', display: 'inline-block' }}>Webbadress:</span>
             <input {...register("webbaddress")} />
           </label>
 
           <div style={{ display: 'flex', gap: '15px' }}>
             <label className='labelStyle'>
-              <span style={{ minWidth: '100px', display: 'inline-block' }}>Telefon nummer:</span>
+              <span style={{ minWidth: '100px', display: 'inline-block' }}>Telefon:</span>
               <input {...register("phonenumber")} />
             </label>
             <label className='labelStyle'>
@@ -160,7 +160,7 @@ const Settings = () => {
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
-            <input className='submit' type="submit" value="Submit" style={{ minWidth: '150px' }} />
+            <input className='submit' type="submit" value="Spara" style={{ minWidth: '150px' }} />
           </div>
         </form>
       </div>
