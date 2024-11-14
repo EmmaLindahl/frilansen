@@ -9,7 +9,10 @@ const Search = () => {
     lastname: '',
     professionalrole: '',
     area: '',
-    company: ''
+    company: '',
+    webbaddress: '',
+    phonenumber: '',
+    email: ''
   });
 
   useEffect(() => {
@@ -92,8 +95,11 @@ const Search = () => {
             <div key={index} className="companyCard">
                <p>{ item.firstname } { item.lastname } - { item.professionalrole }<br/></p> 
               <p>                
-                företag: { item.company }<br/>
-                Område: { item.area }
+                företag: { item.company}<br/>
+                Område: { item.area }<br/>
+                webbadress: { item.webbaddress }<br/>
+                telefon nummer: { item.phonenumber }<br/>
+                email: { item.email }
               </p>
             </div>
           ))
