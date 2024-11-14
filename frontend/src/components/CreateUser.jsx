@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import GDPRInfoWindow from './GDPRInfoWindow';
 import './CreateUser.css';
 
 const CreateUser = () => {
@@ -15,6 +16,17 @@ const CreateUser = () => {
     });
 
     const [message, setMessage] = useState('');
+    const [showGDPR, setShowGDPR] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
+    useEffect(() => {
+        const GDPRaccepted = localStorage.getItem('gdprAccepted');
+        if(!GDPRaccepted) {
+          setShowGDPR(true);
+        }
+      }, []);
+
+      const GDPRclose = () => setShowGDPR(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -60,7 +72,11 @@ const CreateUser = () => {
     };
     
     return (
-        <div>
+        <>
+        {showGDPR ? (
+            <GDPRInfoWindow onClose={GDPRclose} />
+        ) : (
+            <div>
             <h2>Skapa ny användare</h2>
             <div className='card'>
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
@@ -80,12 +96,24 @@ const CreateUser = () => {
                         <label className='labelStyle'>
                             <span style={{ minWidth: '100px', display: 'inline-block' }}>Lösenord:</span>
                             <input 
-                                type='text' 
+                                type={showPassword ? 'text' : 'password'}
                                 name='password' 
                                 value={formData.password} 
                                 onChange={handleChange} 
                                 required 
                             />
+                            <button
+                                type='button'
+                                onClick={() => setShowPassword(!showPassword)}
+                                style={{
+                                    position: 'relative',
+                                    left: '90px',
+                                    bottom: '21px',
+                                    background: 'none',
+                                    border: 'none',
+                                    cursor: 'pointer'
+                                }}
+                                >{showPassword ? '🙈' : '👁️'}</button>
                         </label>
                     </div>
 
@@ -188,6 +216,8 @@ const CreateUser = () => {
             </div>
             {message && <p>{message}</p>}
         </div>
+        )}
+        </>
     )
 }
 

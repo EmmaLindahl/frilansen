@@ -1,30 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import LoginModal from './LoginModal';
-import GDPRInfo from './GDPRInfoWindow';
 import './Home.css'
 import {preloadSearch} from '../App'
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showGDPR, setShowGDPR] = useState(false);
   const token = localStorage.getItem('token');;
-
-  useEffect(() => {
-    const GDPRaccepted = localStorage.getItem('gdprAccepted');
-    if(!GDPRaccepted) {
-      setShowGDPR(true);
-    }
-  }, []);
   
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  const GDPRclose = () => setShowGDPR(false);
 
   return (
     <div className='home-container'>
-      {showGDPR ? ( 
-        <GDPRInfo onClose={GDPRclose} /> 
-      ) : (
         <>
         <div className='welcome-section'>
           <h1>
@@ -42,7 +29,6 @@ const Home = () => {
       
         <LoginModal isOpen={isModalOpen} onRequestClose={closeModal} />
       </>
-      )}
     </div>
   )
 }
