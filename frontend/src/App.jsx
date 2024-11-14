@@ -9,6 +9,7 @@ const CreateUser = lazy(() => import('./components/CreateUser'))
 const Search = lazy(() => import('./components/Search'))
 const Settings = lazy(() => import('./components/Settings'))
 
+export const preloadHome = () => import('./components/Home')
 export const preloadSearch = () => import('./components/Search')
 export const preloadSettings = () => import('./components/Settings')
 export const preloadCreateUser = () => import('./components/CreateUser')

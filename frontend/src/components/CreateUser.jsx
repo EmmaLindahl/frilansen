@@ -107,11 +107,12 @@ const CreateUser = () => {
                                 onClick={() => setShowPassword(!showPassword)}
                                 style={{
                                     position: 'relative',
-                                    left: '90px',
+                                    left: '180px',
                                     bottom: '21px',
                                     background: 'none',
                                     border: 'none',
-                                    cursor: 'pointer'
+                                    cursor: 'pointer',
+                                    maxWidth: '20px'
                                 }}
                                 >{showPassword ? '🙈' : '👁️'}</button>
                         </label>
