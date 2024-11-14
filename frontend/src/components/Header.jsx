@@ -48,7 +48,7 @@ const Header = () => {
 
       <p>Frilansen.se</p>
 
-    <div className='container'>
+    <div className='login-container'>
       <div style={{ lineHeight: '1px', fontSize: '0.8em' }}>
        {data && <><p>Inloggad som:</p>
        <p>{data.firstname} {data.lastname}</p></>}
