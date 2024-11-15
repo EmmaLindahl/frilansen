@@ -15,7 +15,7 @@ const Home = () => {
     <div className='home-container'>
         <>
         <div className='welcome-section'>
-          <img async src={SnickarBild} alt="Snickarbild" style={{maxWidth: '500px'}}/>
+          <img async src={SnickarBild} alt="Snickarbild" style={{maxWidth: '500px', borderRadius: '15px'}}/>
           <h1>
             Välkommen till Frilansen!
           </h1>
