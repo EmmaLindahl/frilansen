@@ -21,7 +21,6 @@ const Header = () => {
     if (token) {
         const decodedToken = jwtDecode(token);
          setUserId(decodedToken.userId);
-         console.log(decodedToken)
     }
   }, []);
 

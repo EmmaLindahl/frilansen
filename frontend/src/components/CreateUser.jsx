@@ -46,7 +46,6 @@ const CreateUser = () => {
                 },
                 body: JSON.stringify(formData),
             });
-            console.log(formData)
 
             if (response.ok) {
                 const data = await response.json();

@@ -26,7 +26,7 @@ const Settings = () => {
         .then(response => response.json())
         .then((data) => {
           setData(data);
-          console.log("Fetch from Settings", data);
+          // console.log("Fetch from Settings", data);
         });
     }
   }, [userId]);
@@ -66,7 +66,7 @@ const Settings = () => {
   }, [data, reset]);
 
   const onSubmit = async (input) => {
-    console.log(`Form data submitted: ${input}`);
+    // console.log(`Form data submitted: ${input}`);
     const token = localStorage.getItem('token');
 
     try {
@@ -79,7 +79,7 @@ const Settings = () => {
         body: JSON.stringify(input)
       });
       const data = await response.json();
-      console.log("User updated:", data);
+      // console.log("User updated:", data);
     } catch (error) {
       console.error("Failed to update user:", error);
     }
@@ -98,7 +98,7 @@ const Settings = () => {
       });
   
       if (response.ok) {
-        console.log("User deleted successfully");
+        // console.log("User deleted successfully");
         localStorage.removeItem('token');
         setData(null);
         setUserId(null);

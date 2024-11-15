@@ -21,7 +21,7 @@ const Search = () => {
       .then((data) => {
         setData(data);
         setFilteredData(data); 
-        console.log("Fetched data:", data);
+        // console.log("Fetched data:", data);
       });
   }, []);
 

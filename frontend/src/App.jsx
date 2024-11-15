@@ -22,8 +22,9 @@ function App() {
     fetch('/api')
       .then(response => response.json())
       .then((data) => {
-        setData(data),
-        console.log("Fetch from App:", data)}
+        setData(data)
+        // ,console.log("Fetch from App:", data)
+      }
       )
     }, []);
 

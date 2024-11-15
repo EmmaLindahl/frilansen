@@ -20,7 +20,6 @@ router.post('/login', async (req, res) => {
     try {
         const result = await client.query('SELECT * FROM userInformation WHERE email = $1;', [email]);
         const user = result.rows[0];
-            console.log("Queried user:", user);
 
         if (!user) {
             return res.status(400).json({ error: 'User not found' });

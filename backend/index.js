@@ -134,8 +134,6 @@ app.delete('/api/user/:id', authenticateToken, async (req, res) => {
             return res.status(400).json({ error: 'Invalid password' });
         }
 
-        console.log('SÅJA!');
-
         const deleteResult = await client.query(
             'DELETE FROM userInformation WHERE id = $1 RETURNING *;',
             [userId]
