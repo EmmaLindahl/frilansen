@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const GDPRInfoWindow = ({ onClose }) => {
+    const navigate = useNavigate();
+
     const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
@@ -18,6 +21,11 @@ const GDPRInfoWindow = ({ onClose }) => {
     const handleCheckboxCheck = (e) => {
         setIsChecked(e.target.checked);
     };
+
+    const redirectToSearch = () => {
+        navigate('/search');
+        onClose();
+    }
  
     return (
         <div className='gdpr-container-outer'>
@@ -63,6 +71,9 @@ const GDPRInfoWindow = ({ onClose }) => {
                 </div>
                 <button onClick={handleAccept} className='gdpr-button' disabled={!isChecked}>
                     Acceptera
+                </button>
+                <button onClick={redirectToSearch}>
+                    Stäng
                 </button>
             </div>
         </div>
