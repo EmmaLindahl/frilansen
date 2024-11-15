@@ -26,6 +26,15 @@ const CreateUser = () => {
         }
       }, []);
 
+      useEffect(() => {
+        if (message) {
+            const timer = setTimeout(() => {
+                setMessage('');
+            },2000);
+            return () => clearTimeout(timer);
+        };
+      }, [message]);
+
       const GDPRclose = () => setShowGDPR(false);
 
     const handleChange = (e) => {
