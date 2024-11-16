@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const result = await client.query('SELECT * FROM userInformation WHERE email = $1;', [email]);
+        const result = await client.query('SELECT * FROM userinformation WHERE email = $1;', [email]);
         const user = result.rows[0];
 
         if (!user) {

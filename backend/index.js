@@ -35,10 +35,10 @@ const authenticateToken = (req, res, next) => {
     })
 }
 
-//GET ALL USERS - FLYTTAD FRÅN RAD 55 TILL 19 /Jonathan
+//GET ALL USERS
 app.get('/api', async (_request, response) => {
     const {rows} = await client.query(
-        'SELECT * FROM userInformation'
+        'SELECT * FROM userinformation'
     )
     response.send(rows)
 })
@@ -52,8 +52,6 @@ app.listen(port, () => {
 app.get('/api/user/:id', authenticateToken, async (req, res) => {
     const userId = req.params.id;
     const authenticatedUserId = String(req.user.userId);
-    // console.log("HÄR", token)
-    // console.log("HÄR", authenticatedUserId, typeof(authenticatedUserId))
 
     if(userId !== authenticatedUserId){
         return res.status(403).json({error: 'Not correct user'})
@@ -80,7 +78,7 @@ app.put ('/api/user/:id', async (request, response) => {
     const {firstname, lastname, company, professionalrole, area, webbaddress, phonenumber, email} = request.body
 try{
     const result = await client.query(
-        'UPDATE userInformation SET firstname = $1, lastName = $2, company = $3, professionalrole = $4, area = $5, webbaddress = $6, phonenumber = $7, email = $8 WHERE id = $9 RETURNING *;',
+        'UPDATE userinformation SET firstname = $1, lastName = $2, company = $3, professionalrole = $4, area = $5, webbaddress = $6, phonenumber = $7, email = $8 WHERE id = $9 RETURNING *;',
         [firstname, lastname, company, professionalrole, area, webbaddress, phonenumber, email, userId]
     );
     response.status(200).json(result.rows[0]);
@@ -97,7 +95,7 @@ app.post('/api/user', async (request, response) => {
 
     try {
         const result = await client.query(
-            'INSERT INTO userInformation (firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;',
+            'INSERT INTO userinformation (firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;',
             [firstname, lastname, password, company, professionalrole, area, webbaddress, phonenumber, email]
         );
 
@@ -107,6 +105,7 @@ app.post('/api/user', async (request, response) => {
         response.status(500).json({ error: 'Failed to create user' });
     }
 });
+
 
 // DELETE
 app.delete('/api/user/:id', authenticateToken, async (req, res) => {
@@ -120,7 +119,7 @@ app.delete('/api/user/:id', authenticateToken, async (req, res) => {
 
     try {
         const result = await client.query(
-            'SELECT * FROM userInformation WHERE id = $1;',
+            'SELECT * FROM userinformation WHERE id = $1;',
             [userId]
         );
 
@@ -135,7 +134,7 @@ app.delete('/api/user/:id', authenticateToken, async (req, res) => {
         }
 
         const deleteResult = await client.query(
-            'DELETE FROM userInformation WHERE id = $1 RETURNING *;',
+            'DELETE FROM userinformation WHERE id = $1 RETURNING *;',
             [userId]
         );
 
@@ -148,11 +147,15 @@ app.delete('/api/user/:id', authenticateToken, async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'Failed to delete user' });
     }
+
+   
 });
 
-
+app.get('*', (req, res) => {
+    res.sendFile(path.join(path.resolve(), 'dist', 'index.html'));
+});
 
 //I backendmappen: 
 // Skapa .env fil 
-// skriv i .env filen: PGURI=postgres://postgres:password@user/postgres
+// skriv i .env filen: PGURI=postgres://postgres:supersecretpassword@host.docker.internal:5432/postgresdb
 // OBS! byt ut password mot ditt lösenord samt user till din user
