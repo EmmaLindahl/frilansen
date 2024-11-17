@@ -5,6 +5,7 @@ import LogOut from './LogOut'
 import './Header.css';
 import { jwtDecode } from 'jwt-decode';
 import { preloadCreateUser, preloadHome, preloadSearch, preloadSettings } from '../App';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,12 +63,24 @@ const Header = () => {
       {isMenuOpen && (
         <div className='hamburger-menu'>
           <ul>
-            <li><a onMouseEnter={preloadHome} href='/'>Hem</a></li>
-            <li><a onMouseEnter={preloadSearch} href='/search'>Sök Hantverkare</a></li>
-            <li><a onMouseEnter={preloadCreateUser} href='/create-user'>Skapa Användare</a></li>
-            <li><a  onMouseEnter={preloadSettings} href='/settings' style={{
-              color: token ? 'gray' : 'inherit',cursor: token ? 'not-allowed' : 'pointer'}}>Inställningar</a></li>
-          </ul>
+            <li><Link onMouseEnter={preloadHome} to='/'>Hem</Link></li>
+            <li><Link onMouseEnter={preloadSearch} to='/search'>Sök Hantverkare</Link></li>
+            <li><Link onMouseEnter={preloadCreateUser} to='/create-user'>Skapa Användare</Link></li>
+            <li><Link
+                  onMouseEnter={preloadSettings}
+                  to={token ? '/settings' : '#'}
+                  style={{
+                    color: token ? 'inherit' : 'gray',
+                    cursor: token ? 'pointer' : 'not-allowed'
+                  }}
+                  onClick={(e) => {
+                    if (!token) {
+                      e.preventDefault(); 
+                    }
+                  }}
+                  >Inställningar
+                </Link></li>
+          </ul> 
         </div>
       )}
       <LoginModal isOpen={isModalOpen} onRequestClose={closeModal} />
